@@ -184,6 +184,9 @@ exec_always conky
 # show network manager quick launch icon 
 exec --no-startup-id nm-applet
 
+# make unity-control-center ok
+exec_always export XDG_CURRENT_DESKTOP=Unity
+
 #hide_edge_borders none
 #client.focused #BA7907 #BA7907 #FFFFFF #BA7907 #BA7907
 #client.placeholder #FFB638 #FFB638 #FFFFFF #FFB638 #FFB638
