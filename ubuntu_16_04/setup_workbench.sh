@@ -34,7 +34,14 @@ if [[ $? != 0 ]]; then
 fi
 
 echo -e $RESET $GREEN $NL"Configuring i3" $RESET
+mkdir ~/.i3
 cp $ROOT_DIR/configs/i3/general/config ~/.i3/config
+
+# Check if the installation was successful or not
+if [[ $? != 0 ]]; then
+  echo -e $RED $BOLD"Failed to configure i3. Exiting"$RESET
+  exit
+fi
 
 mkdir -p ~/.config/i3status
 cp $ROOT_DIR/configs/i3/status/config ~/.config/i3status/config
@@ -79,6 +86,7 @@ if [[ $? != 0 ]]; then
 fi
 
 echo -e $RESET $GREEN $NL"Configuring conky" $RESET
+mkdir ~/.config/conky
 cp $ROOT_DIR/configs/conky/conky.conf ~/.config/conky/conky.conf
 
 # Check if the installation was successful or not
@@ -94,7 +102,7 @@ fi
 # # # # # # # # # # # # # # # #
 
 echo -e $RESET $GREEN $NL"Installing shutter" $RESET
-sudo apt install shutter
+sudo apt install shutter feh gedit-plugins
 
 # # # # # # # # # # # # # # # # #
 #
@@ -104,5 +112,6 @@ sudo apt install shutter
 
 echo -e $RESET $GREEN $NL"Copying the scripts" $RESET
 mkdir -p ~/.custom_scripts
-cp $ROOT_DIR/scripts/toggle-xkbmap.conf ~/.custom_scripts/toggle-xkbmap.conf
+cp $ROOT_DIR/scripts/toggle-xkbmap.sh ~/.custom_scripts/toggle-xkbmap.sh
 cp $ROOT_DIR/resources/vanilla_origin_wide.png ~/Pictures/vanilla_origin_wide.png
+cp $ROOT_DIR/resources/vanilla_origin_wide_double.png ~/Pictures/vanilla_origin_wide_double.png
