@@ -8,7 +8,7 @@ cd <ubuntu_xx_yy>
 bash setup_workbench.sh
 
 # Install ROS
-bash install_ros_kinetic.sh
+bash install_ros.sh
 
 # Initialize the catkin workspace
 cd ~/catkin_ws && catkin_make
