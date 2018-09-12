@@ -102,7 +102,7 @@ fi
 # # # # # # # # # # # # # # # #
 
 echo -e $RESET $GREEN $NL"Installing shutter" $RESET
-sudo apt install shutter feh gedit-plugins
+sudo apt install shutter feh gedit-plugins redshift
 
 # # # # # # # # # # # # # # # # #
 #

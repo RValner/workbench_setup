@@ -181,11 +181,14 @@ exec --no-startup-id feh --bg-scale ~/Pictures/vanilla_origin_wide.png
 # start conky
 exec_always conky
 
+# start redshift
+exec_always --no-startup-id redshift -l 58.37:26.72
+
 # show network manager quick launch icon 
 exec --no-startup-id nm-applet
 
 # make unity-control-center ok
-exec_always export XDG_CURRENT_DESKTOP=Unity
+#exec_always export XDG_CURRENT_DESKTOP=Unity
 
 #hide_edge_borders none
 #client.focused #BA7907 #BA7907 #FFFFFF #BA7907 #BA7907
