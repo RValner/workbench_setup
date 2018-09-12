@@ -160,6 +160,10 @@ bindsym $mod+Control+Up exec pactl set-sink-volume @DEFAULT_SINK@ +3%
 bindsym $mod+Control+Down exec pactl set-sink-volume @DEFAULT_SINK@ -3%
 bindsym $mod+Control+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+# screen brightness control
+bindsym $mod+Control+Right exec bash ~/.custom_scripts/change-brightness.sh 5
+bindsym $mod+Control+Left exec bash ~/.custom_scripts/change-brightness.sh -5
+
 # Take a screenshot with shutter
 bindsym Print exec shutter -f -e -o ~/Pictures/Shutter_Screenshots/Screenshot_%T_%d:%m:%Y.png
 

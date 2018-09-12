@@ -112,6 +112,7 @@ sudo apt install shutter feh gedit-plugins redshift
 
 echo -e $RESET $GREEN $NL"Copying the scripts" $RESET
 mkdir -p ~/.custom_scripts
-cp $ROOT_DIR/scripts/toggle-xkbmap.sh ~/.custom_scripts/toggle-xkbmap.sh
+cp $ROOT_DIR/scripts/toggle-xkbmap.sh ~/.custom_scripts/
+cp $ROOT_DIR/scripts/change-brightness.sh ~/.custom_scripts/
 cp $ROOT_DIR/resources/vanilla_origin_wide.png ~/Pictures/vanilla_origin_wide.png
 cp $ROOT_DIR/resources/vanilla_origin_wide_double.png ~/Pictures/vanilla_origin_wide_double.png
