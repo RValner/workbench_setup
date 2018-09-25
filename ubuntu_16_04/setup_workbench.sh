@@ -47,7 +47,7 @@ find_install_from_apt() {
     echo -e $GREEN$BOLD"*" $PACKAGE_NAME $RESET$GREEN"package is already installed."$RESET
   else
     # Clone the rviz_plugin_manager package
-    echo -e $RESET$GREEN"Installing the" $PACKAGE_NAME $RESET
+    echo -e $RESET$GREEN"Installing" $PACKAGE_NAME $RESET
     sudo apt install $PACKAGE_NAME
   fi 
 }
@@ -78,17 +78,17 @@ sudo apt update
 #
 # # # # # # # # # # # # # #
 
-find_install_from_apt() i3
-check_success() "Failed to install i3"
+find_install_from_apt i3
+check_success "Failed to install i3"
 
 echo -e $RESET $GREEN $NL"Configuring i3" $RESET
 mkdir ~/.i3
 cp $ROOT_DIR/configs/i3/general/config ~/.i3/config
-check_success() "Failed to configure i3"
+check_success "Failed to configure i3"
 
 mkdir -p ~/.config/i3status
 cp $ROOT_DIR/configs/i3/status/config ~/.config/i3status/config
-check_success() "Failed to configure i3"
+check_success "Failed to configure i3"
 
 # # # # # # # # # # # # # # # #
 #
@@ -96,8 +96,8 @@ check_success() "Failed to configure i3"
 #
 # # # # # # # # # # # # # # # #
 
-find_install_from_apt() ranger
-check_success() "Failed to install ranger"
+find_install_from_apt ranger
+check_success "Failed to install ranger"
 
 echo -e $RESET $GREEN $NL"Configuring ranger" $RESET
 ranger --copy-config=all
@@ -109,13 +109,13 @@ cp $ROOT_DIR/configs/ranger/rc.conf ~/.config/ranger/rc.conf
 #
 # # # # # # # # # # # # # # # #
 
-find_install_from_apt() conky-all
-check_success() "Failed to install conky"
+find_install_from_apt conky-all
+check_success "Failed to install conky"
 
 echo -e $RESET $GREEN $NL"Configuring conky" $RESET
 mkdir ~/.config/conky
 cp $ROOT_DIR/configs/conky/conky.conf ~/.config/conky/conky.conf
-check_success() "Failed to configure conky"
+check_success "Failed to configure conky"
 
 # # # # # # # # # # # # # # # #
 #
@@ -123,10 +123,10 @@ check_success() "Failed to configure conky"
 #
 # # # # # # # # # # # # # # # #
 
-find_install_from_apt() shutter
-find_install_from_apt() feh
-find_install_from_apt() gedit-plugins
-find_install_from_apt() redshift
+find_install_from_apt shutter
+find_install_from_apt feh
+find_install_from_apt gedit-plugins
+find_install_from_apt redshift
 
 # # # # # # # # # # # # # # # # #
 #
@@ -135,6 +135,6 @@ find_install_from_apt() redshift
 # # # # # # # # # # # # # # # # #
 
 echo -e $RESET $GREEN $NL"Copying the scripts" $RESET
-copy_files() $ROOT_DIR/scripts ~/.custom_scripts/
-copy_files() $ROOT_DIR/resources/ ~/Pictures/
+copy_files $ROOT_DIR/scripts ~/.custom_scripts/
+copy_files $ROOT_DIR/resources/ ~/Pictures/
 
