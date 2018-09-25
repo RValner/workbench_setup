@@ -7,6 +7,60 @@ BOLD="\e[1m"
 NL="\n"
 RESET="\e[39m\e[0m"
 
+#--------------------------------------------------------------#
+#--------------------------------------------------------------#
+#                                                              #
+#                     FUNCTION DEFINITIONS                     #
+#                                                              #
+#--------------------------------------------------------------#
+#--------------------------------------------------------------#
+
+# Checks if previously executed process finished successfully or not
+# Usage: check_success() <"Error message">
+check_success() {
+  if [[ $? != 0 ]]; then
+    echo -e $RED$BOLD$1". Exiting"$RESET
+    exit
+  fi
+}
+
+# Copy function
+copy_files() {
+  SRC_DIR=$1
+  DST_DIR=$2
+  FILES=$(ls $SRC_DIR)
+
+  for FILE in ${FILES[*]}
+  do
+    cp -r $SRC_DIR/$FILE $DST_DIR
+  done
+}
+
+# Usage: find_install_from_apt <package_name>
+find_install_from_apt() {
+  PACKAGE_NAME=$1
+  
+  # Look for the package
+  SEARCH_RESULT=$(dpkg --list | grep $PACKAGE_NAME | awk -F: '{print $1}' | cut -d' ' -f3)
+
+  if [[ $SEARCH_RESULT = $PACKAGE_NAME ]]; then
+    echo -e $GREEN$BOLD"*" $PACKAGE_NAME $RESET$GREEN"package is already installed."$RESET
+  else
+    # Clone the rviz_plugin_manager package
+    echo -e $RESET$GREEN"Installing the" $PACKAGE_NAME $RESET
+    sudo apt install $PACKAGE_NAME
+  fi 
+}
+
+
+#--------------------------------------------------------------#
+#--------------------------------------------------------------#
+#                                                              #
+#                     START OF THE SCRIPT                      #
+#                                                              #
+#--------------------------------------------------------------#
+#--------------------------------------------------------------#
+
 ROOT_DIR=$(pwd)
 
 # # # # # # # # # # # # # #
@@ -24,33 +78,17 @@ sudo apt update
 #
 # # # # # # # # # # # # # #
 
-echo -e $RESET $GREEN $NL"Installing i3" $RESET
-sudo apt install i3
-
-# Check if the installation was successful or not
-if [[ $? != 0 ]]; then
-  echo -e $RED $BOLD"Failed to install i3. Exiting"$RESET
-  exit
-fi
+find_install_from_apt() i3
+check_success() "Failed to install i3"
 
 echo -e $RESET $GREEN $NL"Configuring i3" $RESET
 mkdir ~/.i3
 cp $ROOT_DIR/configs/i3/general/config ~/.i3/config
-
-# Check if the installation was successful or not
-if [[ $? != 0 ]]; then
-  echo -e $RED $BOLD"Failed to configure i3. Exiting"$RESET
-  exit
-fi
+check_success() "Failed to configure i3"
 
 mkdir -p ~/.config/i3status
 cp $ROOT_DIR/configs/i3/status/config ~/.config/i3status/config
-
-# Check if the installation was successful or not
-if [[ $? != 0 ]]; then
-  echo -e $RED $BOLD"Failed to configure i3. Exiting"$RESET
-  exit
-fi
+check_success() "Failed to configure i3"
 
 # # # # # # # # # # # # # # # #
 #
@@ -58,13 +96,8 @@ fi
 #
 # # # # # # # # # # # # # # # #
 
-sudo apt install ranger
-
-# Check if the installation was successful or not
-if [[ $? != 0 ]]; then
-  echo -e $RED $BOLD"Failed to install ranger. Exiting"$RESET
-  exit
-fi
+find_install_from_apt() ranger
+check_success() "Failed to install ranger"
 
 echo -e $RESET $GREEN $NL"Configuring ranger" $RESET
 ranger --copy-config=all
@@ -76,24 +109,13 @@ cp $ROOT_DIR/configs/ranger/rc.conf ~/.config/ranger/rc.conf
 #
 # # # # # # # # # # # # # # # #
 
-echo -e $RESET $GREEN $NL"Installing conky" $RESET
-sudo apt install conky-all
-
-# Check if the installation was successful or not
-if [[ $? != 0 ]]; then
-  echo -e $RED $BOLD"Failed to install conky. Exiting"$RESET
-  exit
-fi
+find_install_from_apt() conky-all
+check_success() "Failed to install conky"
 
 echo -e $RESET $GREEN $NL"Configuring conky" $RESET
 mkdir ~/.config/conky
 cp $ROOT_DIR/configs/conky/conky.conf ~/.config/conky/conky.conf
-
-# Check if the installation was successful or not
-if [[ $? != 0 ]]; then
-  echo -e $RED $BOLD"Failed to configure conky. Exiting"$RESET
-  exit
-fi
+check_success() "Failed to configure conky"
 
 # # # # # # # # # # # # # # # #
 #
@@ -101,8 +123,10 @@ fi
 #
 # # # # # # # # # # # # # # # #
 
-echo -e $RESET $GREEN $NL"Installing shutter" $RESET
-sudo apt install shutter feh gedit-plugins redshift
+find_install_from_apt() shutter
+find_install_from_apt() feh
+find_install_from_apt() gedit-plugins
+find_install_from_apt() redshift
 
 # # # # # # # # # # # # # # # # #
 #
@@ -111,8 +135,6 @@ sudo apt install shutter feh gedit-plugins redshift
 # # # # # # # # # # # # # # # # #
 
 echo -e $RESET $GREEN $NL"Copying the scripts" $RESET
-mkdir -p ~/.custom_scripts
-cp $ROOT_DIR/scripts/toggle-xkbmap.sh ~/.custom_scripts/
-cp $ROOT_DIR/scripts/change-brightness.sh ~/.custom_scripts/
-cp $ROOT_DIR/resources/vanilla_origin_wide.png ~/Pictures/vanilla_origin_wide.png
-cp $ROOT_DIR/resources/vanilla_origin_wide_double.png ~/Pictures/vanilla_origin_wide_double.png
+copy_files() $ROOT_DIR/scripts ~/.custom_scripts/
+copy_files() $ROOT_DIR/resources/ ~/Pictures/
+
