@@ -24,18 +24,6 @@ check_success() {
   fi
 }
 
-# Copy function
-copy_files() {
-  SRC_DIR=$1
-  DST_DIR=$2
-  FILES=$(ls $SRC_DIR)
-
-  for FILE in ${FILES[*]}
-  do
-    cp -r $SRC_DIR/$FILE $DST_DIR
-  done
-}
-
 # Usage: find_install_from_apt <package_name>
 find_install_from_apt() {
   PACKAGE_NAME=$1
@@ -51,7 +39,6 @@ find_install_from_apt() {
     sudo apt install $PACKAGE_NAME
   fi 
 }
-
 
 #--------------------------------------------------------------#
 #--------------------------------------------------------------#
@@ -135,6 +122,6 @@ find_install_from_apt redshift
 # # # # # # # # # # # # # # # # #
 
 echo -e $RESET $GREEN $NL"Copying the scripts" $RESET
-copy_files $ROOT_DIR/scripts ~/.custom_scripts/
-copy_files $ROOT_DIR/resources/ ~/Pictures/
+cp -r $ROOT_DIR/scripts/ ~/.custom_scripts/
+cp -r $ROOT_DIR/resources/ ~/Pictures/
 
