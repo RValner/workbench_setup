@@ -29,9 +29,9 @@ find_install_from_apt() {
   PACKAGE_NAME=$1
   
   # Look for the package
-  SEARCH_RESULT=$(dpkg --list | grep $PACKAGE_NAME | awk -F: '{print $1}' | cut -d' ' -f3)
+  SEARCH_RESULT=$(dpkg-query -W -f='${Status}' $PACKAGE_NAME 2>/dev/null | grep -c "ok installed")
 
-  if [[ $SEARCH_RESULT = $PACKAGE_NAME ]]; then
+  if [[ $SEARCH_RESULT -eq 1 ]]; then
     echo -e $GREEN$BOLD"*" $PACKAGE_NAME $RESET$GREEN"package is already installed."$RESET
   else
     # Clone the rviz_plugin_manager package
