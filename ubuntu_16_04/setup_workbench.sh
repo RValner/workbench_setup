@@ -50,20 +50,14 @@ find_install_from_apt() {
 
 ROOT_DIR=$(pwd)
 
-# # # # # # # # # # # # # #
-#
 # Update the package list
-#
-# # # # # # # # # # # # # #
+# ----------------------------------------------------
 
 echo -e $RESET $GREEN $NL"Updating the package list" $RESET
 sudo apt update
 
-# # # # # # # # # # # # # #
-#
 # Install and configure i3
-#
-# # # # # # # # # # # # # #
+# ----------------------------------------------------
 
 find_install_from_apt i3
 check_success "Failed to install i3"
@@ -77,11 +71,8 @@ mkdir -p ~/.config/i3status
 cp $ROOT_DIR/configs/i3/status/config ~/.config/i3status/config
 check_success "Failed to configure i3"
 
-# # # # # # # # # # # # # # # #
-#
 # Install and configure ranger
-#
-# # # # # # # # # # # # # # # #
+# ----------------------------------------------------
 
 find_install_from_apt ranger
 check_success "Failed to install ranger"
@@ -90,11 +81,8 @@ echo -e $RESET $GREEN $NL"Configuring ranger" $RESET
 ranger --copy-config=all
 cp $ROOT_DIR/configs/ranger/rc.conf ~/.config/ranger/rc.conf
 
-# # # # # # # # # # # # # # # #
-#
 # Install and configure conky
-#
-# # # # # # # # # # # # # # # #
+# ----------------------------------------------------
 
 find_install_from_apt conky-all
 check_success "Failed to install conky"
@@ -104,24 +92,17 @@ mkdir ~/.config/conky
 cp $ROOT_DIR/configs/conky/conky.conf ~/.config/conky/conky.conf
 check_success "Failed to configure conky"
 
-# # # # # # # # # # # # # # # #
-#
 # Install other packages
-#
-# # # # # # # # # # # # # # # #
+# ----------------------------------------------------
 
 find_install_from_apt shutter
 find_install_from_apt feh
 find_install_from_apt gedit-plugins
 find_install_from_apt redshift
 
-# # # # # # # # # # # # # # # # #
-#
 # Copy the scripts and resources
-#
-# # # # # # # # # # # # # # # # #
+# ----------------------------------------------------
 
 echo -e $RESET $GREEN $NL"Copying the scripts" $RESET
 cp -r $ROOT_DIR/scripts/ ~/.custom_scripts/
 cp -r $ROOT_DIR/resources/ ~/Pictures/
-
