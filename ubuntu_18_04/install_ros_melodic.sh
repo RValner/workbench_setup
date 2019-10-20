@@ -86,7 +86,12 @@ check_success "Failed"
 echo -e $RESET $GREEN $NL"Initializing the catkin workspace" $RESET
 
 echo 'export ACTIVE_CATKIN_WS_NAME=sandbox_ws' >> ~/.bashrc
-echo 'export ACTIVE_CATKIN_WS_PATH=~/catkin_workspaces/$ACTIVE_CATKIN_WS_NAME' >> ~/.bashrc
+echo 'export CATKIN_WS_PATH=~/catkin_workspaces' >> ~/.bashrc
+echo 'export ACTIVE_CATKIN_WS_PATH=$CATKIN_WS_PATH/$ACTIVE_CATKIN_WS_NAME' >> ~/.bashrc
+
+echo 'alias goto_active_catkin_ws="cd $ACTIVE_CATKIN_WS_PATH"' >> ~/.bashrc
+echo 'alias create_unoverlaid_catkin_ws="source ~/.custom_scripts/ros/create_unoverlaid_catkin_ws.sh"' >> ~/.bashrc
+echo 'alias set_active_catkin_ws="source ~/.custom_scripts/ros/set_active_catkin_ws.sh"' >> ~/.bashrc
 
 source ~/.bashrc
 check_success "Failed"
