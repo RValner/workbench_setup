@@ -79,6 +79,7 @@ find_install_from_apt python-rosinstall
 find_install_from_apt python-rosinstall-generator
 find_install_from_apt python-wstool
 find_install_from_apt build-essential
+find_install_from_apt python-catkin-tools
 source ~/.bashrc
 check_success "Failed"
 
