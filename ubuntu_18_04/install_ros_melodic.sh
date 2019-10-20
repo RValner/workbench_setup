@@ -84,9 +84,16 @@ source ~/.bashrc
 check_success "Failed"
 
 echo -e $RESET $GREEN $NL"Initializing the catkin workspace" $RESET
-mkdir -p ~/catkin_workspaces/sandbox_ws/src
-cd ~/catkin_workspaces/sandbox_ws/
-echo "source ~/catkin_workspaces/sandbox_ws/devel/setup.bash" >> ~/.bashrc
+
+echo 'export ACTIVE_CATKIN_WS_NAME=sandbox_ws' >> ~/.bashrc
+echo 'export ACTIVE_CATKIN_WS_PATH=~/catkin_workspaces/$ACTIVE_CATKIN_WS_NAME' >> ~/.bashrc
+
+source ~/.bashrc
+check_success "Failed"
+
+mkdir -p $ACTIVE_CATKIN_WS_PATH/src
+cd $ACTIVE_CATKIN_WS_PATH
+echo 'source $ACTIVE_CATKIN_WS_PATH/devel/setup.bash' >> ~/.bashrc
 check_success "Failed"
 
 echo -e $RESET $GREEN $NL"Finished installing ROS. Go catkin build your workspace" $RESET
