@@ -85,6 +85,8 @@ check_success "Failed"
 
 echo -e $RESET $GREEN $NL"Initializing the catkin workspace" $RESET
 
+mkdir -p ~/catkin_workspaces/sandbox_ws/src
+
 echo 'export ACTIVE_CATKIN_WS_NAME=sandbox_ws' >> ~/.bashrc
 echo 'export CATKIN_WS_PATH=~/catkin_workspaces' >> ~/.bashrc
 echo 'export ACTIVE_CATKIN_WS_PATH=$CATKIN_WS_PATH/$ACTIVE_CATKIN_WS_NAME' >> ~/.bashrc
