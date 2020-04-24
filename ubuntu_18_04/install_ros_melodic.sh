@@ -65,6 +65,7 @@ find_install_from_apt ros-melodic-desktop
 check_success "Failed"
 
 echo -e $RESET $GREEN $NL"Initializing rosdep" $RESET
+find_install_from_apt python-rosdep
 sudo rosdep init
 rosdep update
 check_success "Failed"

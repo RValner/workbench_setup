@@ -48,42 +48,42 @@ find_install_from_apt() {
 #--------------------------------------------------------------#
 #--------------------------------------------------------------#
 
-#echo -e $RESET $GREEN $NL"Setting up the sources list" $RESET
-#sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-#check_success "Failed"
+echo -e $RESET $GREEN $NL"Setting up the sources list" $RESET
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+check_success "Failed"
 
-#echo -e $RESET $GREEN $NL"Setting up the keys" $RESET
-#sudo -E apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-#check_success "Failed"
+echo -e $RESET $GREEN $NL"Setting up the keys" $RESET
+sudo -E apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+check_success "Failed"
 
-#echo -e $RESET $GREEN $NL"Updating the package list" $RESET
-#sudo apt update
-#check_success "Failed"
+echo -e $RESET $GREEN $NL"Updating the package list" $RESET
+sudo apt update
+check_success "Failed"
 
-#echo -e $RESET $GREEN $NL"Installing ROS" $RESET
-#find_install_from_apt ros-kinetic-desktop
-#check_success "Failed"
+echo -e $RESET $GREEN $NL"Installing ROS" $RESET
+find_install_from_apt ros-kinetic-desktop
+check_success "Failed"
 
-#echo -e $RESET $GREEN $NL"Initializing rosdep" $RESET
-#sudo rosdep init
-#rosdep update
-#check_success "Failed"
+echo -e $RESET $GREEN $NL"Initializing rosdep" $RESET
+sudo rosdep init
+rosdep update
+check_success "Failed"
 
-#echo -e $RESET $GREEN $NL"Adding ROS env setup to bashrc" $RESET
-#echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-#source ~/.bashrc
-#check_success "Failed"
+echo -e $RESET $GREEN $NL"Adding ROS env setup to bashrc" $RESET
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+check_success "Failed"
 
-#echo -e $RESET $GREEN $NL"Installing basic ROS tools" $RESET
-#find_install_from_apt python-rosinstall
-#find_install_from_apt python-rosinstall-generator
-#find_install_from_apt python-wstool
-#find_install_from_apt build-essential
-#find_install_from_apt python-catkin-tools
-#source ~/.bashrc
-#check_success "Failed"
+echo -e $RESET $GREEN $NL"Installing basic ROS tools" $RESET
+find_install_from_apt python-rosinstall
+find_install_from_apt python-rosinstall-generator
+find_install_from_apt python-wstool
+find_install_from_apt build-essential
+find_install_from_apt python-catkin-tools
+source ~/.bashrc
+check_success "Failed"
 
-#echo -e $RESET $GREEN $NL"Initializing the catkin workspace" $RESET
+echo -e $RESET $GREEN $NL"Initializing the catkin workspace" $RESET
 
 mkdir -p ~/catkin_workspaces/sandbox_ws/src
 

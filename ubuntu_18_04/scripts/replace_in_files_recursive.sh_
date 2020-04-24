@@ -10,7 +10,7 @@ RESET="\e[39m\e[0m"
 STR_OLD=$1
 STR_NEW=$2
 NAME_HINT=$3
-SCRIPT_NAME=~/.customScripts/python/format_escaped_string.py
+SCRIPT_NAME=~/.custom_scripts/python/format_escaped_string.py
 
 STR_OLD_ESC=$(python2.7 $SCRIPT_NAME "$STR_OLD")
 STR_NEW_ESC=$(python2.7 $SCRIPT_NAME "$STR_NEW")
