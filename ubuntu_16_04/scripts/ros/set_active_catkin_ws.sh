@@ -1,4 +1,4 @@
-g#!/bin/bash
+#!/bin/bash
 
 RED="\e[31m"
 YELLOW="\e[33m"
