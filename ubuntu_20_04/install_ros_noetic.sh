@@ -82,6 +82,7 @@ echo -e $RESET $GREEN $NL"Installing basic ROS tools" $RESET
 #find_install_from_apt build-essential
 find_install_from_apt python3-catkin-tools
 find_install_from_apt python3-osrf-pycommon
+find_install_from_apt python-is-python3
 source ~/.bashrc
 check_success "Failed"
 
