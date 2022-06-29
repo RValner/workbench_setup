@@ -173,6 +173,9 @@ bindsym $mod+Alt_L exec ~/.custom_scripts/toggle-xkbmap.sh
 # lock screen
 bindsym $mod+Control+e exec i3lock -i ~/Pictures/resources/vanilla_origin_wide_double.png
 
+# take a screenshot with flameshot
+bindcode $mod+Shift+39 exec "flameshot gui"
+
 # set the placement of monitors
 # exec_always ~/.custom_scripts/vahetaMonitorid.sh
 
@@ -193,6 +196,9 @@ exec --no-startup-id nm-applet
 
 # make unity-control-center ok
 #exec_always export XDG_CURRENT_DESKTOP=Unity
+
+#start the screenshot tool
+exec --no-startup-id flameshot
 
 #hide_edge_borders none
 #client.focused #BA7907 #BA7907 #FFFFFF #BA7907 #BA7907

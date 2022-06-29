@@ -107,7 +107,7 @@ sudo apt install code
 # Install other packages
 # ----------------------------------------------------
 
-find_install_from_apt shutter
+find_install_from_apt flameshot
 find_install_from_apt feh
 find_install_from_apt gedit-plugins
 find_install_from_apt redshift
